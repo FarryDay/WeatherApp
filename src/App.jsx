@@ -7,7 +7,7 @@ import closeIcon from './assets/close.svg'
 const client = await getClient()
 
 function App() {
-	const API_KEY = '04368d9cb769412b85f181507232104'
+	const API_KEY = 'API_KEY'
 	const [weatherMsg, setWeatherMsg] = useState('')
 	const [requestData, setRequestData] = useState('')
 
