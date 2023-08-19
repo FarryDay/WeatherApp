@@ -9,17 +9,40 @@ const client = await getClient()
 function App() {
 	const API_KEY = 'API_KEY'
 	const [weatherMsg, setWeatherMsg] = useState('')
+	const [weather, setWeather] = useState({
+		current: {
+			temp_c: '',
+			feelslike_c: '',
+			cloud: '',
+			humidity: '',
+		},
+	})
+	const [state, setState] = useState({
+		weatherCard: 'none',
+	})
 	const [requestData, setRequestData] = useState('')
 
 	async function getWeather() {
 		if (!requestData) {
 			message('Вы не ввели город!', { title: 'Погода', type: 'error' })
 		}
-		const response = await client.get(
+		const { data } = await client.get(
 			`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${requestData}&aqi=yes`
 		)
 
-		setWeatherMsg('Температура: ' + response.data.current.temp_c + '°С')
+		setWeather({
+			current: {
+				temp_c: data.current.temp_c,
+				feelslike_c: data.current.feelslike_c,
+				cloud: data.current.cloud,
+				humidity: data.current.humidity,
+			},
+		})
+
+		setState({ ...weather, weatherCard: 'flex' })
+		console.log(response)
+
+		setWeatherMsg('Температура: ' + data.current.temp_c + '°С')
 	}
 
 	return (
@@ -42,9 +65,25 @@ function App() {
 					onChange={e => setRequestData(e.currentTarget.value)}
 					placeholder='Введите город...'
 				/>
-				<button type='submit'>Узнать</button>
+				<button className='sumbit-btn' type='submit'>
+					Узнать
+				</button>
 			</form>
 
+			<div
+				className='card'
+				style={{ display: state.weatherCard, justifyContent: 'space-around' }}
+			>
+				<div>
+					<p>Температура: {weather.current.temp_c}°С</p>
+					<p>Ощущается как: {weather.current.feelslike_c}°С</p>
+				</div>
+				<div>
+					<p>Облачность: {weather.current.cloud}%</p>
+					<p>Влажность: {weather.current.humidity}%</p>
+					<p></p>
+				</div>
+			</div>
 			<p>{weatherMsg}</p>
 		</div>
 	)

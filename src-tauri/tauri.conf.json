@@ -8,7 +8,7 @@
 	},
 	"package": {
 		"productName": "WeatherApp",
-		"version": "1.0.0"
+		"version": "1.0.1"
 	},
 	"tauri": {
 		"allowlist": {
@@ -45,7 +45,7 @@
 				"fullscreen": false,
 				"resizable": true,
 				"title": "Weather",
-				"width": 600,
+				"width": 400,
 				"height": 300
 			}
 		]
