@@ -8,7 +8,7 @@ In src/App.jsx change const API_KEY on your from https://www.weatherapi.com/
 
 # Download
 
-Last version: https://github.com/FarryDay/WeatherApp/releases/tag/v1.0.0
+Last version: https://github.com/FarryDay/WeatherApp/releases/tag/v1.0.1
 
 ## Recommended IDE Setup
 
